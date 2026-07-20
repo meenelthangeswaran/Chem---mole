@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="/style.css">
+  </head>
+
+  <body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sec 3 G3 Chemistry: Mole Concept Masterclass Sandbox</title>
+    <style>
+        :root {
+            --primary: #2b6cb0;
+            --primary-hover: #1a528d;
+            --success: #2f855a;
+            --error: #c53030;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --border: #e2e8f0;
+            --level1: #3182ce;
+            --level2: #805ad5;
+            --exit: #dd6b20;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #1a365d, #2b6cb0);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0 0 5px 0; font-size: 24px; }
+        header p { margin: 0; opacity: 0.9; font-size: 14px; }
+
+        /* Navigation Menu tabs */
+        .nav-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            padding: 14px;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .tab-l1 { background-color: var(--level1); }
+        .tab-l2 { background-color: var(--level2); }
+        .tab-ex { background-color: var(--exit); }
+
+        .tab-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        
+        .tab-btn.active {
+            border-color: #2d3748;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+            transform: scale(1.02);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .section-header-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .q-number {
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .q-text {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            background-color: #f7fafc;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #cbd5e0;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #718096;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .formula-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            background-color: #fff;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 18px;
+            text-align: left;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text);
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background-color: #f7fafc;
+        }
+
+        .option-btn.correct {
+            border-color: var(--success);
+            background-color: #f0fff4;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .option-btn.wrong {
+            border-color: var(--error);
+            background-color: #fff5f5;
+            color: var(--error);
+        }
+
+        .feedback-box {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .feedback-box.error { display: block; background-color: #fff5f5; color: var(--error); border-left: 5px solid var(--error); }
+        .feedback-box.success { display: block; background-color: #f0fff4; color: var(--success); border-left: 5px solid var(--success); }
+
+        /* Level 2 Input Elements */
+        .calc-section {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px dashed var(--border);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .calc-section.active { opacity: 1; pointer-events: auto; }
+
+        .input-wrapper {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            max-width: 400px;
+        }
+
+        .typed-input {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .typed-input:focus { border-color: var(--primary); }
+
+        .submit-btn {
+            background-color: #4a5568;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover { background-color: #2d3748; }
+
+        /* Pagination & Buttons */
+        .action-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .nav-arrow-btn {
+            background-color: #edf2f7;
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .nav-arrow-btn:hover:not(:disabled) { background-color: #e2e8f0; }
+        .nav-arrow-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .next-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Textarea styles for Exit ticket */
+        .text-response-area {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Mole Concept Sandbox Matrix</h1>
+        <p>Singapore Secondary 3 G3 Combined Science (Chemistry)</p>
+    </header>
+
+    <!-- Interactive Navigation Module Buttons -->
+    <div class="nav-tabs">
+        <button id="btn-tab-1" class="tab-btn tab-l1 active" onclick="switchSection(1)">Level 1<br><small>Formula Setup (10 Qs)</small></button>
+        <button id="btn-tab-2" class="tab-btn tab-l2" onclick="switchSection(2)">Level 2<br><small>Calculations (12 Qs)</small></button>
+        <button id="btn-tab-3" class="tab-btn tab-ex" onclick="switchSection(3)">Exit Ticket<br><small>Review (3 Qs)</small></button>
+    </div>
+
+    <!-- Active Working Sandbox Viewport -->
+    <div id="simulation-container">
+        <!-- Script populates structural blocks here -->
+    </div>
+</div>
+
+<script>
+    // Explicit clean formulas strictly stripped of any text tags or labels
+    const FORMULAS = {
+        F1: "No. of moles = Mass (g) / molar mass (g/mol)",
+        F2: "No. of moles = No. of particles / 6.02 x 10<sup>23</sup>",
+        F3: "No. of moles = Volume of gas in dm<sup>3</sup> / 24 dm<sup>3</sup>",
+        F4: "Concentration in g/dm<sup>3</sup> = Mass of solute (g) / volume of solvent (dm<sup>3</sup>)",
+        F5: "Concentration in mol/dm<sup>3</sup> = No. of moles of solute / volume of solvent (dm<sup>3</sup>)"
+    };
+
+    // Database structure housing scenarios without formula numbers
+    const database = {
+        1: [
+            { text: "A sample of copper(II) sulfate contains 1.204 x 10<sup>23</sup> particles.", correctFormula: "F2", hints: { F1:"No mass parameter is provided.", F3:"This object is an atomic particle structure array, not gas space.", F4:"Concentration maps are not applicable.", F5:"No fluid spatial criteria provided." } },
+            { text: "A student weighs out a sample of 11.2 g of iron (Fe) powder.", correctFormula: "F1", hints: { F2:"Grams are mass weight, not microscopic structure tracking profiles.", F3:"Solid metals don't match gas volume constants.", F4:"Not computing liquid solution concentration metrics.", F5:"No solution volume available." } },
+            { text: "A gas syringe collecting carbon dioxide at r.t.p. reads 6.00 dm<sup>3</sup>.", correctFormula: "F3", hints: { F1:"Volume in dm<sup>3</sup> provided rather than mass grains weight.", F2:"Not raw molecule counts array.", F4:"This represents gaseous room properties, not fluid mixtures.", F5:"No volumetric concentration layout present." } },
+            { text: "A sample of 10.0 g of sodium hydroxide pellets is dissolved completely into 2.00 dm<sup>3</sup> of distilled water.", correctFormula: "F4", hints: { F1:"Solves solute properties per decimeter space.", F2:"Particle arrays are omitted.", F3:"Liquid mixing framework, not gas.", F5:"This question scenario is geared to evaluate mass concentration framework weights (g/dm<sup>3</sup>) first." } },
+            { text: "A flask contains exactly 0.400 moles of hydrochloric acid dissolved into a 0.500 dm<sup>3</sup> volumetric solution container.", correctFormula: "F5", hints: { F1:"Requires volumetric distribution concentration profiles.", F2:"No atomic population indexes.", F3:"Fluid solution space, not gaseous room constants.", F4:"This maps mol/dm<sup>3</sup>, not g/dm<sup>3</sup> balance." } },
+            { text: "A block of solid water ice scales at exactly 90.0 g.", correctFormula: "F1", hints: { F2:"Mass value recorded, not molecular count values.", F3:"Ice is solid mass, not free gas metrics.", F4:"Pure singular compound, not solution state.", F5:"No volume coordinates specified." } },
+            { text: "A gas tank measures a total internal container count of 3.01 x 10<sup>23</sup> molecules of methane gas.", correctFormula: "F2", hints: { F1:"Tracking microscopic counts rather than mass properties.", F3:"Although it is gas, the data given specifies structural count variables.", F4:"Not fluid concentration system.", F5:"No liquid mixture attributes exist." } },
+            { text: "A beaker contains 0.0500 moles of nitric acid mixed evenly throughout 0.500 dm<sup>3</sup> of solution.", correctFormula: "F5", hints: { F1:"Requires system density concentration formulas.", F2:"No Avogadro constant values required.", F3:"Liquid state properties, not gaseous volume equations.", F4:"This measures molar spatial values." } },
+            { text: "A chemistry preparation sheet records 24.0 g of copper sulfate dissolved within 3.00 dm<sup>3</sup> of total liquid volume.", correctFormula: "F4", hints: { F1:"Requires system volume blend equations.", F2:"No atomic entity indexes are tracked.", F3:"Liquid environment properties, not gas volumes.", F5:"This scenario operates on mass concentration frameworks." } },
+            { text: "A gas canister houses 4.40 g of carbon dioxide gas molecules.", correctFormula: "F1", hints: { F2:"The system tracks metric mass data parameters.", F3:"Watch out! Even though it is gas, the properties given use grams (mass).", F4:"Pure dry canister parameters.", F5:"No solution layout values given." } }
+        ],
+        2: [
+            { text: "A sample of silver contains 1.806 x 10<sup>24</sup> atoms. Calculate the total number of moles present. [Molar mass of Ag = 108 g/mol]", correctFormula: "F2", val: 3.00 },
+            { text: "Find the number of moles present in a 72.0 dm<sup>3</sup> sample of oxygen gas at r.t.p.", correctFormula: "F3", val: 3.00 },
+            { text: "A solution has a concentration of 0.500 mol/dm<sup>3</sup>. Calculate its concentration in g/dm<sup>3</sup>. [Molar mass of solute = 40.0 g/mol]", correctFormula: "F4", val: 20.0 },
+            { text: "A solution of hydrochloric acid has a concentration of 7.30 g/dm<sup>3</sup>. Convert this concentration into mol/dm<sup>3</sup>. [Molar mass of HCl = 36.5 g/mol]", correctFormula: "F5", val: 0.200 },
+            { text: "Calculate the volume in dm<sup>3</sup> occupied by 1.50 moles of nitrogen gas at r.t.p.", correctFormula: "F3", val: 36.0 },
+            { text: "A 500 cm<sup>3</sup> sample of solution contains 10.0 g of dissolved compound. Find its concentration in g/dm<sup>3</sup>.", correctFormula: "F4", val: 20.0 },
+            { text: "Determine the number of moles of solute present in 3.00 dm<sup>3</sup> of a 0.400 mol/dm<sup>3</sup> acid solution.", correctFormula: "F5", val: 1.20 },
+            { text: "Find the mass in grams required to deliver 0.500 moles of sodium chloride (NaCl). [Molar mass of NaCl = 58.5 g/mol]", correctFormula: "F1", val: 29.3 },
+            { text: "A solution of sodium chloride has a concentration of 11.7 g/dm<sup>3</sup>. Find its concentration in mol/dm<sup>3</sup>. [Molar mass of NaCl = 58.5 g/mol]", correctFormula: "F5", val: 0.200 },
+            { text: "If a solution has a concentration of 16.0 g/dm<sup>3</sup>, how many grams of solute are dissolved in 0.250 dm<sup>3</sup> of the solvent?", correctFormula: "F4", val: 4.00 },
+            { text: "How many moles of gas are present in a 1200 cm<sup>3</sup> sample of helium gas at r.t.p.?", correctFormula: "F3", val: 0.0500 },
+            { text: "Convert a solution concentration of 0.250 mol/dm<sup>3</sup> of sodium carbonate (Na<sub>2</sub>CO<sub>3</sub>) into g/dm<sup>3</sup>. [Molar mass of Na<sub>2</sub>CO<sub>3</sub> = 106 g/mol]", correctFormula: "F4", val: 26.5 }
+        ],
+        3: [
+            { type: "mcq", text: "Which piece of information is critical if you want to calculate moles using a given volume of gas divided by 24 dm<sup>3</sup>?", options: ["The temperature of a liquid solvent", "The total mass of the gas sample in grams", "The substance must be in the gaseous state at r.t.p.", "Avogadro's tracking count constants"], ans: "The substance must be in the gaseous state at r.t.p.", explanation: "Correct! This volume scaling factor applies exclusively to gases at standard room temperature and pressure conditions." },
+            { type: "mcq", text: "When calculating concentration in g/dm<sup>3</sup>, if the question gives you the volume of solvent in cm<sup>3</sup>, what initial step must you take?", options: ["Multiply the volume by 1000", "Divide the volume by 1000 to convert to dm<sup>3</sup>", "Multiply the mass by the volume directly", "No adjustment needed, use cm<sup>3</sup> directly"], ans: "Divide the volume by 1000 to convert to dm<sup>3</sup>", explanation: "Excellent! Since concentration scales require decimeters cubed units, any centimeter metrics must be converted by dividing by 1000 first." },
+            { type: "open", text: "Explain how concentration in mol/dm<sup>3</sup> and concentration in g/dm<sup>3</sup> are converted between each other. What specific value of the solute makes this conversion possible?", explanation: "Teacher Verification Model Note: To convert from mol/dm3 to g/dm3, you multiply by the molar mass of the solute. To convert from g/dm3 to mol/dm3, you divide by the molar mass. Therefore, the molar mass (g/mol) is the link value that connects them." }
+        ]
+    };
+
+    let activeSection = 1;
+    let indexPointers = { 1: 0, 2: 0, 3: 0 };
+    let l2FormulaPassed = false;
+
+    function switchSection(secId) {
+        activeSection = secId;
+        for (let i = 1; i <= 3; i++) {
+            document.getElementById(`btn-tab-${i}`).classList.remove('active');
+        }
+        document.getElementById(`btn-tab-${secId}`).classList.add('active');
+        renderActiveSlide();
+    }
+
+    function renderActiveSlide() {
+        const idx = indexPointers[activeSection];
+        const currentPool = database[activeSection];
+        const container = document.getElementById("simulation-container");
+
+        if (idx >= currentPool.length) {
+            container.innerHTML = `
+                <div class="card" style="text-align:center; padding: 40px;">
+                    <h2 style="color:var(--success);">🎉 Section Completed!</h2>
+                    <p>Great work. All tasks in this specific learning container have been completed successfully.</p>
+                    <button class="submit-btn" style="background-color:var(--primary);" onclick="resetSection(${activeSection})">Reset Section</button>
+                </div>`;
+            return;
+        }
+
+        const q = currentPool[idx];
+
+        if (activeSection === 1) {
+            container.innerHTML = `
+                <div class="card">
+                    <div class="section-header-title">
+                        <span>Level 1: Concept Identification</span>
+                        <span style="font-size:14px; color:#718096;">Task ${idx + 1} of 10</span>
+                    </div>
+                    <div class="section-title">Analyze the scenario given below:</div>
+                    <div class="q-text">${q.text}</div>
+                    
+                    <div class="section-title">Identify the correct formula to analyze this data:</div>
+                    <div class="formula-grid">
+                        <button class="option-btn" onclick="checkL1Formula('F1', this)">${FORMULAS.F1}</button>
+                        <button class="option-btn" onclick="checkL1Formula('F2', this)">${FORMULAS.F2}</button>
+                        <button class="option-btn" onclick="checkL1Formula('F3', this)">${FORMULAS.F3}</button>
+                        <button class="option-btn" onclick="checkL1Formula('F4', this)">${FORMULAS.F4}</button>
+                        <button class="option-btn" onclick="checkL1Formula('F5', this)">${FORMULAS.F5}</button>
+                    </div>
+                    <div id="l1-feedback" class="feedback-box"></div>
+                    
+                    <div class="action-container">
+                        <button class="nav-arrow-btn" onclick="prevSlide()" ${idx === 0 ? 'disabled' : ''}>&larr; Prev</button>
+                        <button id="next-btn-l1" class="next-btn" onclick="nextSlide()">Next Scenario &rarr;</button>
+                    </div>
+                </div>`;
+        } 
+        else if (activeSection === 2) {
+            container.innerHTML = `
+                <div class="card">
+                    <div class="section-header-title">
+                        <span>Level 2: Applied Calculations</span>
+                        <span style="font-size:14px; color:#718096;">Task ${idx + 1} of 12</span>
+                    </div>
+                    <div class="section-title">Problem Statement:</div>
+                    <div class="q-text">${q.text}</div>
+                    
+                    <div class="section-title">Step 1: Choose the correct equation format</div>
+                    <div class="formula-grid">
+                        <button class="option-btn l2-f-btn" onclick="checkL2Formula('F1', this)">${FORMULAS.F1}</button>
+                        <button class="option-btn l2-f-btn" onclick="checkL2Formula('F2', this)">${FORMULAS.F2}</button>
+                        <button class="option-btn l2-f-btn" onclick="checkL2Formula('F3', this)">${FORMULAS.F3}</button>
+                        <button class="option-btn l2-f-btn" onclick="checkL2Formula('F4', this)">${FORMULAS.F4}</button>
+                        <button class="option-btn l2-f-btn" onclick="checkL2Formula('F5', this)">${FORMULAS.F5}</button>
+                    </div>
+                    <div id="l2-formula-feedback" class="feedback-box"></div>
+
+                    <div id="l2-calc-box" class="calc-section">
+                        <div class="section-title">Step 2: Calculate and type your final numerical answer (Use 3 Significant Figures)</div>
+                        <div class="input-wrapper">
+                            <input type="text" id="l2-typed-val" class="typed-input" placeholder="e.g., 0.200, 24.5, 4.00">
+                            <button class="submit-btn" onclick="checkL2Calculation()">Verify Answer</button>
+                        </div>
+                        <div id="l2-calc-feedback" class="feedback-box"></div>
+                    </div>
+
+                    <div class="action-container">
+                        <button class="nav-arrow-btn" onclick="prevSlide()" ${idx === 0 ? 'disabled' : ''}>&larr; Prev</button>
+                        <button id="next-btn-l2" class="next-btn" onclick="nextSlide()">Next Task &rarr;</button>
+                    </div>
+                </div>`;
+        } 
+        else if (activeSection === 3) {
+            let specificContent = '';
+            if (q.type === 'mcq') {
+                specificContent = `<div class="formula-grid">`;
+                q.options.forEach(opt => {
+                    specificContent += `<button class="option-btn ticket-opt" onclick="checkTicketMCQ('${opt}', this)">${opt}</button>`;
+                });
+                specificContent += `</div>`;
+            } else {
+                specificContent = `
+                    <div>
+                        <textarea id="ticket-open-text" class="text-response-area" placeholder="Write your explanation framework here..."></textarea>
+                        <button class="submit-btn" onclick="checkTicketOpen()">Submit Explanation</button>
+                    </div>`;
+            }
+
+            container.innerHTML = `
+                <div class="card">
+                    <div class="section-header-title">
+                        <span>Exit Ticket Checkpoint</span>
+                        <span style="font-size:14px; color:#718096;">Question ${idx + 1} of 3</span>
+                    </div>
+                    <div class="q-text">${q.text}</div>
+                    
+                    ${specificContent}
+                    <div id="ticket-feedback" class="feedback-box"></div>
+
+                    <div class="action-container" style="margin-top:30px;">
+                        <button class="nav-arrow-btn" onclick="prevSlide()" ${idx === 0 ? 'disabled' : ''}>&larr; Prev</button>
+                        <button id="next-btn-l3" class="next-btn" onclick="nextSlide()">Next Step &rarr;</button>
+                    </div>
+                </div>`;
+        }
+    }
+
+    // --- Level 1 Logic ---
+    window.checkL1Formula = function(selectedKey, btn) {
+        const q = database[1][indexPointers[1]];
+        const fb = document.getElementById("l1-feedback");
+        const btns = btn.parentElement.querySelectorAll('.option-btn');
+        
+        btns.forEach(b => b.className = 'option-btn');
+        
+        if (selectedKey === q.correctFormula) {
+            btn.classList.add('correct');
+            fb.className = "feedback-box success";
+            fb.innerHTML = "<strong>Correct Identification!</strong> Excellent job analyzing the given context properties.";
+            document.getElementById("next-btn-l1").style.display = "inline-block";
+        } else {
+            btn.classList.add('wrong');
+            fb.className = "feedback-box error";
+            fb.innerHTML = `<strong>Hint:</strong> ${q.hints[selectedKey]}`;
+        }
+    }
+
+    // --- Level 2 Logic ---
+    window.checkL2Formula = function(selectedKey, btn) {
+        if (l2FormulaPassed) return;
+        const q = database[2][indexPointers[2]];
+        const fb = document.getElementById("l2-formula-feedback");
+        const btns = btn.parentElement.querySelectorAll('.l2-f-btn');
+        
+        btns.forEach(b => b.className = 'option-btn l2-f-btn');
+
+        if (selectedKey === q.correctFormula) {
+            btn.classList.add('correct');
+            fb.className = "feedback-box success";
+            fb.innerHTML = "<strong>Correct Equation!</strong> The calculation field is now unlocked below.";
+            l2FormulaPassed = true;
+            document.getElementById("l2-calc-box").classList.add("active");
+        } else {
+            btn.classList.add('wrong');
+            fb.className = "feedback-box error";
+            fb.innerHTML = "<strong>Incorrect Pathway.</strong> Review the explicit configuration units given inside the core statement.";
+        }
+    }
+
+    window.checkL2Calculation = function() {
+        const q = database[2][indexPointers[2]];
+        const inputVal = document.getElementById("l2-typed-val").value.trim();
+        const fb = document.getElementById("l2-calc-feedback");
+        
+        const parsedInput = parseFloat(inputVal);
+        if (isNaN(parsedInput)) {
+            fb.className = "feedback-box error";
+            fb.innerHTML = "Please type in a valid numeric value.";
+            return;
+        }
+
+        const lowerBound = q.val * 0.99;
+        const upperBound = q.val * 1.01;
+
+        if (parsedInput >= lowerBound && parsedInput <= upperBound) {
+            fb.className = "feedback-box success";
+            fb.innerHTML = `<strong>Correct Answer!</strong> Expected value is ${q.val}. Milestone cleared successfully.`;
+            document.getElementById("next-btn-l2").style.display = "inline-block";
+        } else {
+            fb.className = "feedback-box error";
+            fb.innerHTML = `<strong>Incorrect Value.</strong> Verify your rounding rules, fraction setup, or unit adjustments. Ensure your calculation is given to 3 s.f.`;
+        }
+    }
+
+    // --- Exit Ticket Logic ---
+    window.checkTicketMCQ = function(selectedOpt, btn) {
+        const q = database[3][indexPointers[3]];
+        const fb = document.getElementById("ticket-feedback");
+        const btns = btn.parentElement.querySelectorAll('.ticket-opt');
+        
+        btns.forEach(b => b.className = 'option-btn ticket-opt');
+
+        if (selectedOpt === q.ans) {
+            btn.classList.add('correct');
+            fb.className = "feedback-box success";
+            fb.innerHTML = `<strong>Correct!</strong> ${q.explanation}`;
+            document.getElementById("next-btn-l3").style.display = "inline-block";
+        } else {
+            btn.classList.add('wrong');
+            fb.className = "feedback-box error";
+            fb.innerHTML = "<strong>Not quite!</strong> Think carefully about the physical states and limits that apply here.";
+        }
+    }
+
+    window.checkTicketOpen = function() {
+        const q = database[3][indexPointers[3]];
+        const userText = document.getElementById("ticket-open-text").value.trim();
+        const fb = document.getElementById("ticket-feedback");
+
+        if (userText.length < 10) {
+            fb.className = "feedback-box error";
+            fb.innerHTML = "Please write out a full conceptual description before submitting.";
+            return;
+        }
+
+        fb.className = "feedback-box success";
+        fb.innerHTML = `<strong>Response Saved!</strong> Review the expected review framework guidelines below to check your work:<br><br><em>${q.explanation}</em>`;
+        document.getElementById("next-btn-l3").style.display = "inline-block";
+    }
+
+    // --- Navigation Utilities ---
+    window.nextSlide = function() {
+        indexPointers[activeSection]++;
+        l2FormulaPassed = false;
+        renderActiveSlide();
+    }
+
+    window.prevSlide = function() {
+        if (indexPointers[activeSection] > 0) {
+            indexPointers[activeSection]--;
+            l2FormulaPassed = false;
+            renderActiveSlide();
+        }
+    }
+
+    window.resetSection = function(secId) {
+        indexPointers[secId] = 0;
+        l2FormulaPassed = false;
+        renderActiveSlide();
+    }
+
+    // Launch initial workspace view
+    renderActiveSlide();
+</script>
+
+</body>
+</html>
+    <script src="/script.js"></script>
+  </body>
+
+</html>
